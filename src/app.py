@@ -23,7 +23,7 @@ if "db_config" not in st.session_state:
         'USER': 'admin',
         'PASSWORD': '',
         'HOST': 'sfmc-views.cfscm4yc6pck.us-east-2.rds.amazonaws.com',
-        'DATABASE': '',
+        'DATABASE': 'sfmc_views',
         'PORT': '3306'
     }
 

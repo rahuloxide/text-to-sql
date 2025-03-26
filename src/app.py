@@ -20,9 +20,9 @@ st.set_page_config(page_title="SFMC Query App")
 # 1. Initialize session state.
 if "db_config" not in st.session_state:
     st.session_state.db_config = {
-        'USER': '',
+        'USER': 'admin',
         'PASSWORD': '',
-        'HOST': 'localhost',
+        'HOST': 'sfmc-views.cfscm4yc6pck.us-east-2.rds.amazonaws.com',
         'DATABASE': '',
         'PORT': '3306'
     }

@@ -310,7 +310,7 @@ for message in st.session_state.messages:
             st.markdown(message["content"])
 
 # Accept user input
-if prompt := st.chat_input("Please ask your question:"):
+if prompt := st.chat_input("give me a plot of all sends on weekly basis OR How many emails were sent in Feb 2025"):
     # Display user message in chat
     with st.chat_message("user", avatar="🚀"):
         st.markdown(prompt)

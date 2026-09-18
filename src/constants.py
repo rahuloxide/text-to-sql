@@ -1,4 +1,4 @@
-LLM_MODEL_NAME = "gpt-4-0125-preview"
+LLM_MODEL_NAME = "gpt-4.1-mini"
 
 CUSTOM_SUFFIX = """Begin!
 

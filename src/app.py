@@ -282,7 +282,7 @@ def generate_response(code_type, input_text):
             return st.session_state.sql_agent.run(local_prompt)
         except Exception as e:
             print(f"SQL query error: {str(e)}")
-            return """Failed to execute SQL query. Ensure you have enough OpenAI API credits. This is most likely to be the issue."""
+            return "Failed to execute SQL query. Check the application logs for the specific error."
 
 
 def reset_conversation():
@@ -325,14 +325,15 @@ if prompt := st.chat_input("give me a plot of all sends on weekly basis OR How m
         if prev_context:
             prompt += f"\n\nGiven previous agent responses:\n{prev_context}\n"
         response = generate_response("python", prompt)
-        if response == "NO_RESPONSE":
-            response = "Please try again with a re-phrased query and more context"
+        if not isinstance(response, dict) or not isinstance(response.get('output'), str):
+            if not isinstance(response, str) or response == "NO_RESPONSE":
+                response = "Please try again with a re-phrased query and more context"
             with st.chat_message("error"):
                 display_text_with_images(response)
             st.session_state.messages.append({"role": "error", "content": response})
         else:
-            code = display_code_plots(response['output'])
             try:
+                code = display_code_plots(response['output'])
                 code = f"import pandas as pd\n{code.replace('fig.show()', '')}"
                 code += "st.plotly_chart(fig, theme='streamlit', use_container_width=True)"
                 exec(code)
